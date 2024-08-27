@@ -11,7 +11,7 @@ import { theme } from './config/theme';
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Provider store={store}>
-			<MantineProvider theme={theme}>
+			<MantineProvider theme={theme} defaultColorScheme='light'>
 				<AppPage />
 			</MantineProvider>
 		</Provider>
