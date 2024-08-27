@@ -1,14 +1,14 @@
-import { Center, Container, Group, Paper, Stack, Text, Title } from "@mantine/core"
+import { Box, Center, Group, Paper, Stack, Text, Title } from "@mantine/core"
 import { IconMail, IconQrcode } from "@tabler/icons-react"
 import { iconSizes } from "../common/styleConstant"
 import classes from '../common/general.module.css'
 
 export const AppPage = () => {
   return (
-    <Container h={'100vh'} >
+    <Box h={'100vh'} w={'100vw'}>
         <Center h={'100%'}>
-          <Paper w={'50%'} >
-            <Stack gap={'xl'} p={'xl'}>
+          <Paper w={{base: '100%', md: '35%'}}>
+            <Stack gap={'xl'} p={'xl'} justify="center" align="center">
               <Title order={1} ta={'center'}>Ingreso en evento/experiencia</Title>
 
               <Group justify="space-between" grow>
@@ -30,6 +30,6 @@ export const AppPage = () => {
             </Stack>
           </Paper>
         </Center>
-      </Container>
+      </Box>
   )
 }
