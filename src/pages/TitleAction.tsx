@@ -1,7 +1,15 @@
 import { Title } from "@mantine/core"
 
-export const TitleAction = () => {
-  return (
-    <Title order={1} ta={'center'}>Ingreso en evento</Title>
-  )
+interface Props {
+    action: string;
+}
+
+export const TitleAction = (props: Props) => {
+    const { action } = props;
+
+    return (
+        <Title order={1} ta={'center'}>
+            {action === 'register' ? 'Registro en el evento' : 'Ingreso en evento'}
+        </Title>
+    )
 }

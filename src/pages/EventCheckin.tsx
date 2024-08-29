@@ -1,13 +1,19 @@
-import { Anchor, Button, Divider, Group, Paper, Stack, Text, TextInput } from '@mantine/core'
+import { Anchor, Button, Divider, Group, Paper, Select, Stack, Text, TextInput } from '@mantine/core'
 import { IconAt, IconId, IconMail, IconQrcode } from '@tabler/icons-react'
 import { iconSizes } from '../common/styleConstant'
 import classes from '../common/general.module.css'
-import { useState } from 'react'
+import { gendersLabel } from '../common/gendersLabel';
 
-export const EventCheckin = () => {
-    const [ action, setAction ] = useState('');
-    const actionError = true;
-    const [ additionalFields, setAdditionalFields ] = useState(false);
+interface Props {
+    action: string;
+    setAction: (action: string) => void; 
+    actionError: boolean;
+    additionalFields: boolean;
+    setAdditionalFields: (additionalFields: boolean) => void;
+}
+
+export const EventCheckin = (props: Props) => {
+    const { action, setAction, actionError, additionalFields, setAdditionalFields } = props;
 
     return (
         <>
@@ -76,11 +82,13 @@ export const EventCheckin = () => {
                                 size='lg'
                                 withAsterisk
                             />
-                            <TextInput
+                            <Select
                                 size='lg'
-                                type='number'
-                                label='Número de teléfono'
-                                placeholder={'000 0000000'}
+                                required
+                                label='Género'
+                                placeholder='Seleccione su género'
+                                data={gendersLabel}
+                                clearable
                             />
                         </Stack>
                         :
@@ -99,11 +107,13 @@ export const EventCheckin = () => {
                                 size='lg'
                                 withAsterisk
                             />
-                            <TextInput
+                            <Select
                                 size='lg'
-                                type='number'
-                                label='Número de teléfono'
-                                placeholder={'000 0000000'}
+                                required
+                                label='Género'
+                                placeholder='Seleccione su género'
+                                data={gendersLabel}
+                                clearable
                             />
                         </Stack>
                     }
