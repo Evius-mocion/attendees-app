@@ -5,7 +5,7 @@ import { TitleAction } from "./TitleAction"
 import { useState } from "react"
 
 export const AppPage = () => {
-  const [ action, setAction ] = useState('');
+  const [ action, setAction ] = useState(''); //'' | 'email' | 'qr' | 'register' | 'experience'
   const actionError = true;
   const [ additionalFields, setAdditionalFields ] = useState(false);
 
@@ -26,7 +26,7 @@ export const AppPage = () => {
             </Stack>
           </Paper>
         </Center>
-        <ButtonOptions />
+        <ButtonOptions setAction={setAction} />
       </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { Anchor, Button, Group, Stack, Text, TextInput } from "@mantine/core"
+import { Anchor, Stack, Text, TextInput } from "@mantine/core"
 import { IconAt } from "@tabler/icons-react"
 
 interface Props {
@@ -19,10 +19,10 @@ export const AccessByEmail = (props: Props) => {
                 withAsterisk
                 error={actionError && <Text ta='center'>No se encuentra registrado, <Anchor onClick={()=>setAction('register')} underline="always">Haz clic aquí para registrarte</Anchor></Text>}
             />
-            <Group justify='end'>
+            {/* <Group justify='end'>
                 <Button size='lg' onClick={()=> setAction('')} variant='subtle'>Volver</Button>
                 <Button size='lg' onClick={()=> setAction('')} disabled={actionError}>Ingresar</Button>
-            </Group>
+            </Group> */}
         </Stack>
     )
 }

@@ -17,7 +17,7 @@ export const EventCheckin = (props: Props) => {
     const { action, setAction, actionError, additionalFields, setAdditionalFields } = props;
 
     return (
-        <>
+        <Stack w={'100%'} justify='center' align='center' h={'100%'}>
             {action === '' &&
                 <AccessByAction setAction={setAction} />
             }
@@ -34,16 +34,23 @@ export const EventCheckin = (props: Props) => {
                         :
                         <RegisterFormByEventAdditionalFields />
                     }
-                    <Group justify='end'>
-                        <Button size='lg' onClick={()=> {setAdditionalFields(true); setAction('')}} variant='subtle'>Volver</Button>
-                        {additionalFields ?
-                            <Button size='lg' onClick={()=> setAdditionalFields(false)} /* disabled={actionError} */>Siguiente</Button>
-                            :
-                            <Button size='lg' onClick={()=> {setAdditionalFields(true); setAction('')}} /* disabled={actionError} */>Registrar</Button>
-                        }
-                    </Group>
                 </Stack>
             }
-        </>
+            {action !== '' &&
+                <Group justify='end' w={'80%'}>
+                    <Button size='lg' onClick={()=> {setAdditionalFields(true); setAction('')}} variant='subtle'>Volver</Button>
+                    {additionalFields && action === 'register' ?
+                        <Button size='lg' onClick={()=> setAdditionalFields(false)} /* disabled={actionError} */>Siguiente</Button>
+                        :
+                        <Button 
+                            size='lg' 
+                            onClick={()=> {setAdditionalFields(true); setAction('')}} 
+                            disabled={actionError && action !== 'register'}>
+                                {action === 'register' ? 'Registrar' : 'Ingresar'}
+                            </Button>
+                    }
+                </Group>
+            }
+        </Stack>
     )
 }
