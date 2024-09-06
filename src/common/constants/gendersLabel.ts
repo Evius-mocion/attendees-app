@@ -1,4 +1,4 @@
-import { UserGenderType } from './userEntity.type';
+import { UserGenderType } from '../../types/userEntity.type';
 
 export const gendersLabel = [
 	{

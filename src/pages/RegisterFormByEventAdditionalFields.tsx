@@ -1,6 +1,6 @@
 import { Divider, Select, Stack, TextInput } from "@mantine/core"
 import { IconAt, IconId } from "@tabler/icons-react"
-import { gendersLabel } from '../common/gendersLabel';
+import { gendersLabel } from '../common/constants/gendersLabel';
 
 export const RegisterFormByEventAdditionalFields = () => {
     return (
