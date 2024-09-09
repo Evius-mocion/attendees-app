@@ -16,8 +16,8 @@ export const AppRoutes = () => {
 		if (status === AuthStatus.notAuthenticated) {
 			return (
 				<>
-					<Route path='/auth/*' element={<LazyAuthPage />} />
-					<Route path='/*' element={<Navigate to={'/auth/login'} />} />
+					<Route path='/identifyStation/*' element={<LazyAuthPage />} />
+					<Route path='/*' element={<Navigate to={'identifyStation'} />} />
 				</>
 			);
 		} else {

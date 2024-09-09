@@ -1,5 +1,11 @@
+import { LoginStationForm } from '../../components/authForm/LoginStationForm';
+
 const AuthPage = () => {
-	return <div>AuthPage</div>;
+	return (
+		<div>
+			<LoginStationForm />
+		</div>
+	);
 };
 
 export default AuthPage;
