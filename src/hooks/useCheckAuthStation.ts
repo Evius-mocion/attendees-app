@@ -15,8 +15,8 @@ export const useCheckAuthStation = () => {
 			const token = getItemInStorage(LocalStorageNames.TOKEN);
 			if (token && token.length > 0) {
 				const { data } = await revalidateTokenService();
-				handledLogin(data.station, data.token);
-				saveItemInStorage(LocalStorageNames.TOKEN, data.token);
+				handledLogin(data.station, data.access_token);
+				saveItemInStorage(LocalStorageNames.TOKEN, data.access_token);
 			} else {
 				handledLogout();
 			}

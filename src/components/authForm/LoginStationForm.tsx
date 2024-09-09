@@ -13,7 +13,7 @@ export const LoginStationForm = () => {
 		<Container h={'100vh'}>
 			<Center h={'100%'}>
 				<Paper {...paperSimpleFormShadow} mih={400}>
-					<Stack gap={'xl'}>
+					<Stack gap={'xl'} mih={400}>
 						<Title order={1} ta={'center'}>
 							¡Bienvenido a{' '}
 							<Text span inherit fz={'bolder'}>

@@ -11,16 +11,15 @@ export const startAuth = (stationId: string) => {
 		try {
 			dispatch(onStartAuth());
 
-			const { station, token } = await loginStationService(stationId);
+			const { station, access_token } = await loginStationService(stationId);
 			dispatch(
 				onSetLogin({
 					station,
-					stationType: station.experienceId
-						? StationType.experience
-						: StationType.event,
+					stationType: station.experienceId ? StationType.experience : StationType.event,
 				})
 			);
-			saveItemInStorage(LocalStorageNames.TOKEN, token);
+			
+			saveItemInStorage(LocalStorageNames.TOKEN, access_token);
 		} catch (error) {
 			const { response } = error as AxiosError;
 
@@ -28,10 +27,9 @@ export const startAuth = (stationId: string) => {
 				return dispatch(onSetLogout('La estación no existe'));
 			}
 			if (response?.status === 401) {
-				return dispatch(
-					onSetLogout('La estación no esta autorizada para funcionar')
-				);
+				return dispatch(onSetLogout('La estación no esta autorizada para funcionar'));
 			}
+			dispatch(onSetLogout('Error desconocido'));
 		}
 	};
 };

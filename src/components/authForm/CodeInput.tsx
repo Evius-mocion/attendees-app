@@ -1,5 +1,4 @@
-import { Button, Stack, Text, TextInput } from '@mantine/core';
-import { useState } from 'react';
+import { Button, Group, Stack, Text, TextInput } from '@mantine/core';
 import { useAppDispatch } from '../../store/store';
 import { startAuth } from '../../store/auth/auth.thunk';
 import { useAuthViewStore } from '../../hooks/useAuthViewStore';
@@ -7,9 +6,8 @@ import { AuthView } from '../../store/auth/authViewSlice';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
 
 export const CodeInput = () => {
-	const [code, setCode] = useState('');
 	const dispatch = useAppDispatch();
-	const { setAuthView } = useAuthViewStore();
+	const { setAuthView, inputCode, onSetInputCode } = useAuthViewStore();
 
 	const { errorMessage } = useAuthStationStore();
 
@@ -20,26 +18,29 @@ export const CodeInput = () => {
 	return (
 		<Stack>
 			<TextInput
-				value={code}
+				value={inputCode}
 				size='lg'
 				label='Código de la estación'
 				placeholder='Eje: 18172a10-092d-4b71-bdc1-c3787b86c5c2'
-				onChange={({ target: { value } }) => setCode(value)}
+				onChange={({ target: { value } }) => onSetInputCode(value)}
 			/>
-			<Button
-				onClick={() => {
-					setAuthView(AuthView.initial);
-				}}
-			>
-				Atrás
-			</Button>
-			<Button
-				onClick={() => {
-					startAuthorizationByCode(code);
-				}}
-			>
-				Enviar
-			</Button>
+			<Group justify='end'>
+				<Button
+					variant='light'
+					onClick={() => {
+						setAuthView(AuthView.initial);
+					}}
+				>
+					Atrás
+				</Button>
+				<Button
+					onClick={() => {
+						startAuthorizationByCode(inputCode);
+					}}
+				>
+					Enviar
+				</Button>
+			</Group>
 			{errorMessage && <Text c={'red'}>{errorMessage}</Text>}
 		</Stack>
 	);

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type AuthViewSlice = {
 	authView: AuthView;
+	inputCode: string;
 };
 
 export enum AuthView {
@@ -12,6 +13,7 @@ export enum AuthView {
 
 const initialState: AuthViewSlice = {
 	authView: AuthView.initial,
+	inputCode: '',
 };
 export const authViewSlice = createSlice({
 	name: 'authView',
@@ -20,8 +22,11 @@ export const authViewSlice = createSlice({
 		setCurrentAuthView: (state, { payload }: PayloadAction<AuthView>) => {
 			state.authView = payload;
 		},
+		setInputCode: (state, { payload }: PayloadAction<string>) => {
+			state.inputCode = payload;
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { setCurrentAuthView } = authViewSlice.actions;
+export const { setCurrentAuthView, setInputCode } = authViewSlice.actions;

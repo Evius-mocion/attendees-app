@@ -12,7 +12,7 @@ mocionApi.interceptors.request.use((config) => {
 	//@ts-ignore
 	config.headers = {
 		...config.headers,
-		Authorization: `Bearer ${getItemInStorage(LocalStorageNames.TOKEN)}`,
+		// Authorization: `Bearer ${getItemInStorage(LocalStorageNames.TOKEN)}`,
 	};
 	return config;
 });
