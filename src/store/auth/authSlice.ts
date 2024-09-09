@@ -16,19 +16,13 @@ export const authSlice = createSlice({
 			state.status = AuthStatus.checking;
 			state.errorMessage = '';
 		},
-		onSetLogin: (
-			state,
-			{ payload }: PayloadAction<{ station: Station; stationType: StationType }>
-		) => {
+		onSetLogin: (state, { payload }: PayloadAction<{ station: Station; stationType: StationType }>) => {
 			state.station = payload.station;
 			state.stationType = payload.stationType;
 			state.status = AuthStatus.authenticated;
 			state.errorMessage = '';
 		},
-		onSetLogout: (
-			state,
-			{ payload = '' }: PayloadAction<string | undefined>
-		) => {
+		onSetLogout: (state, { payload = '' }: PayloadAction<string | undefined>) => {
 			state.station = {} as Station;
 			state.stationType = {} as StationType;
 			state.status = AuthStatus.notAuthenticated;
@@ -41,5 +35,4 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { onSetLogin, onStartAuth, onSetLogout, onResetErrorMessage } =
-	authSlice.actions;
+export const { onSetLogin, onStartAuth, onSetLogout, onResetErrorMessage } = authSlice.actions;
