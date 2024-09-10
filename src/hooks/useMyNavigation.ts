@@ -13,7 +13,7 @@ export const useMyNavigation = () => {
 		navigate('/options/registerUser');
 	};
 	const goToInitialOptions = () => {
-		navigate('/options/checkInWithQrCode');
+		navigate('/options');
 	};
 	return { goToCheckInWithQrCode, goToCheckInWithEmail, goToRegisterUser, goToInitialOptions };
 };

@@ -12,12 +12,14 @@ export const RegisterUserPage = () => {
 	const { checkEmail, errorMessage, isCheckingEmail, setErrorMessage } = useCheckEmail();
 	const { currentView } = useRegisterUserStore();
 	const { event } = useAuthStationStore();
+
 	const renderView = () => {
 		switch (currentView) {
 			case RegisterUserView.initial:
 				return (
 					<>
 						<TextInput
+							size='lg'
 							name='email'
 							label='Correo electrónico'
 							placeholder='tucorreo@email.com'
@@ -27,7 +29,7 @@ export const RegisterUserPage = () => {
 							}}
 							error={errorMessage}
 						/>
-						<Button onClick={() => checkEmail(email)} loading={isCheckingEmail}>
+						<Button size='lg' onClick={() => checkEmail(email)} loading={isCheckingEmail}>
 							Siguiente
 						</Button>
 					</>

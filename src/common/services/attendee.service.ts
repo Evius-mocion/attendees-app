@@ -11,7 +11,6 @@ export const checkEmailService = async (email: string, eventId: string) => {
 	const data = await mocionApi.get<GetAttendeeEmailStatusResponse>(
 		`/api/event/isAssistant/?email=${email}&eventId=${eventId}`
 	);
-
 	return data;
 };
 

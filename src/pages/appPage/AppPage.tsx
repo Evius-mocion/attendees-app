@@ -1,11 +1,8 @@
 import { Box, Center, Paper, Stack } from '@mantine/core';
 import { ButtonOptions } from '../ButtonOptions';
-import { useState } from 'react';
 import PrivateRoutes from '../../routes/PrivateRoutes';
 
 const AppPage = () => {
-	const [action, setAction] = useState(''); //'' | 'email' | 'qr' | 'register' | 'experience'
-
 	return (
 		<Box h={'95vh'} w={'100vw'}>
 			<Center h={'100%'}>
@@ -15,7 +12,7 @@ const AppPage = () => {
 					</Stack>
 				</Paper>
 			</Center>
-			{/* <ButtonOptions setAction={setAction} /> */}
+			<ButtonOptions />
 		</Box>
 	);
 };
