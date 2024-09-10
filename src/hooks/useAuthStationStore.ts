@@ -1,19 +1,20 @@
 import { LocalStorageNames } from '../../../data-hub/src/common/types';
 import { removeItemInStorage, saveItemInStorage } from '../common/helpers/localStorage';
+import { IEvent, Station } from '../common/types/event.type';
 import { onResetErrorMessage, onSetLogin, onSetLogout } from '../store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { StationType } from '../store/types/auth.types';
-import { Station } from '../types/event.type';
 
 export const useAuthStationStore = () => {
-	const { errorMessage, station, stationType, status } = useAppSelector((store) => store.auth);
+	const { errorMessage, station, stationType, status, event } = useAppSelector((store) => store.auth);
 	const dispatch = useAppDispatch();
 
-	const handledLogin = (station: Station, token: string) => {
+	const handledLogin = (station: Station, token: string, event: IEvent) => {
 		dispatch(
 			onSetLogin({
 				station,
 				stationType: station.experienceId ? StationType.experience : StationType.event,
+				event,
 			})
 		);
 
@@ -36,5 +37,6 @@ export const useAuthStationStore = () => {
 		handledLogout,
 		handledLogin,
 		onSetResetErrorMessage,
+		event,
 	};
 };

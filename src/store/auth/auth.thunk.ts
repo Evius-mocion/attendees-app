@@ -11,14 +11,16 @@ export const startAuth = (stationId: string) => {
 		try {
 			dispatch(onStartAuth());
 
-			const { station, access_token } = await loginStationService(stationId);
+			const { station, access_token, event } = await loginStationService(stationId);
+
 			dispatch(
 				onSetLogin({
 					station,
 					stationType: station.experienceId ? StationType.experience : StationType.event,
+					event,
 				})
 			);
-			
+
 			saveItemInStorage(LocalStorageNames.TOKEN, access_token);
 		} catch (error) {
 			const { response } = error as AxiosError;

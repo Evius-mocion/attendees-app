@@ -8,18 +8,20 @@ import { MantineProvider } from '@mantine/core';
 import { theme } from './config/theme';
 import { AppRoutes } from './routes/AppRoutes';
 import { BrowserRouter } from 'react-router-dom';
+import { ModalsProvider } from '@mantine/modals';
+import '@mantine/notifications/styles.css';
+import { Notifications } from '@mantine/notifications';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Provider store={store}>
-			<MantineProvider
-				theme={theme}
-				defaultColorScheme='light'
-				forceColorScheme='light'
-			>
-				<BrowserRouter>
-					<AppRoutes />
-				</BrowserRouter>
+			<MantineProvider theme={theme} defaultColorScheme='light' forceColorScheme='light'>
+				<ModalsProvider>
+					<Notifications position='bottom-right' zIndex={1000} limit={10} />
+					<BrowserRouter>
+						<AppRoutes />
+					</BrowserRouter>
+				</ModalsProvider>
 			</MantineProvider>
 		</Provider>
 	</StrictMode>

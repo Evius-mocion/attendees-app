@@ -2,6 +2,7 @@ import { Avatar, Menu, rem } from '@mantine/core';
 import { IconArrowsLeftRight, IconLogout, IconSettings } from '@tabler/icons-react';
 import { useAuthStationStore } from '../hooks/useAuthStationStore';
 import { StationType } from '../store/types/auth.types';
+import { useAppNavigate } from '../hooks/useAppNavigate';
 
 interface Props {
 	setAction: (action: string) => void;
@@ -10,6 +11,7 @@ interface Props {
 export const ButtonOptions = (props: Props) => {
 	const { setAction } = props;
 	const { stationType, station, handledLogout } = useAuthStationStore();
+	const { goToRegisterUser, goToInitialOptions } = useAppNavigate();
 	return (
 		<Menu>
 			<Menu.Target>
@@ -27,13 +29,13 @@ export const ButtonOptions = (props: Props) => {
 						<Menu.Label>Evento</Menu.Label>
 						<Menu.Item
 							leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
-							onClick={() => setAction('')}
+							onClick={goToInitialOptions}
 						>
 							Ingreso
 						</Menu.Item>
 						<Menu.Item
 							leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
-							onClick={() => setAction('register')}
+							onClick={goToRegisterUser}
 						>
 							Registro
 						</Menu.Item>

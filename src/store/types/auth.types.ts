@@ -1,10 +1,11 @@
-import { Station } from '../../types/event.type';
+import { IEvent, Station } from '../../common/types/event.type';
 
 export type AuthSlice = {
 	status: AuthStatus;
 	station: Station;
 	stationType: StationType;
 	errorMessage: string;
+	event: IEvent;
 };
 
 export enum AuthStatus {

@@ -9,13 +9,11 @@ export const MyQRScanner = (props: Props) => {
 	const { onScan } = props;
 	const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user');
 	return (
-		<Stack>
+		<Stack gap={0}>
 			<Group justify='center'>
 				<Tooltip
 					withinPortal={false}
-					label={
-						facingMode === 'user' ? 'Cambiar a frontal' : 'Cambiar a lateral'
-					}
+					label={facingMode === 'user' ? 'Cambiar a frontal' : 'Cambiar a lateral'}
 					transitionProps={{ transition: 'fade-right', duration: 300 }}
 					offset={5}
 					openDelay={500}
@@ -30,11 +28,7 @@ export const MyQRScanner = (props: Props) => {
 							setFacingMode('environment');
 						}}
 					>
-						{facingMode == 'user' ? (
-							<IconSun size={20} />
-						) : (
-							<IconMoonStars size={20} />
-						)}
+						{facingMode == 'user' ? <IconSun size={20} /> : <IconMoonStars size={20} />}
 					</ActionIcon>
 				</Tooltip>
 			</Group>
