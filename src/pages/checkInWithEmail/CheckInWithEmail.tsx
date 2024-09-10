@@ -1,14 +1,15 @@
 import { Anchor, Button, Group, Stack, Text, TextInput } from '@mantine/core';
 import { isEmail, useForm } from '@mantine/form';
 import { IconAt } from '@tabler/icons-react';
-import { useAppNavigate } from '../../hooks/useAppNavigate';
+import { useMyNavigation } from '../../hooks/useMyNavigation';
+
 
 type EmailForm = {
 	email: string;
 };
 
 export const CheckInWithEmail = () => {
-	const { goToRegisterUser, goToInitialOptions } = useAppNavigate();
+	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
 	const emailForm = useForm<EmailForm>({
 		initialValues: {
 			email: '',

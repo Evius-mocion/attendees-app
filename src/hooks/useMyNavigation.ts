@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export const useAppNavigate = () => {
+export const useMyNavigation = () => {
 	const navigate = useNavigate();
 
 	const goToCheckInWithQrCode = () => {
@@ -15,6 +15,5 @@ export const useAppNavigate = () => {
 	const goToInitialOptions = () => {
 		navigate('/options/checkInWithQrCode');
 	};
-
 	return { goToCheckInWithQrCode, goToCheckInWithEmail, goToRegisterUser, goToInitialOptions };
 };

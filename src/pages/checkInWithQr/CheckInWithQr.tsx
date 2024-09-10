@@ -1,11 +1,11 @@
 import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
 import { useState } from 'react';
-import { useAppNavigate } from '../../hooks/useAppNavigate';
 import { MyQRScanner } from '../../components/qrScanner/QRScanner';
 import { checkInUserWithEmailService } from '../../common/services/attendee.service';
+import { useMyNavigation } from '../../hooks/useMyNavigation';
 
 export const CheckInWithQr = () => {
-	const { goToRegisterUser, goToInitialOptions } = useAppNavigate();
+	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
 	const [errorMessage, setErrorMessage] = useState('');
 
 	const handleCheckInUser = async (email: string) => {

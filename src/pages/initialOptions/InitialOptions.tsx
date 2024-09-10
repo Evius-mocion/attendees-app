@@ -1,13 +1,13 @@
 import { Group, Paper, Stack, Text, Title } from '@mantine/core';
 import classes from '../../common/styles/general.module.css';
-import { useAppNavigate } from '../../hooks/useAppNavigate';
 import { IconMail, IconQrcode } from '@tabler/icons-react';
 import { iconSizes } from '../../common/styles/styleConstant';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
 import { StationType } from '../../store/types/auth.types';
+import { useMyNavigation } from '../../hooks/useMyNavigation';
 
 export const InitialOptions = () => {
-	const { goToCheckInWithEmail, goToCheckInWithQrCode } = useAppNavigate();
+	const { goToCheckInWithEmail, goToCheckInWithQrCode } = useMyNavigation();
 	const { stationType } = useAuthStationStore();
 	return (
 		<Stack>

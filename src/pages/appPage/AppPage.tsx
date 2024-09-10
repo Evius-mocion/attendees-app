@@ -1,19 +1,11 @@
-import { Box, Center, Paper, Stack, Title } from '@mantine/core';
-import { EventCheckin } from '../EventCheckin';
+import { Box, Center, Paper, Stack } from '@mantine/core';
 import { ButtonOptions } from '../ButtonOptions';
-import { TitleAction } from '../TitleAction';
 import { useState } from 'react';
-import { useAuthStationStore } from '../../hooks/useAuthStationStore';
-import { StationType } from '../../store/types/auth.types';
-import { InitialOptions } from '../initialOptions/InitialOptions';
 import PrivateRoutes from '../../routes/PrivateRoutes';
 
 const AppPage = () => {
 	const [action, setAction] = useState(''); //'' | 'email' | 'qr' | 'register' | 'experience'
-	const actionError = true;
-	const [additionalFields, setAdditionalFields] = useState(false);
-	const { stationType } = useAuthStationStore();
-	
+
 	return (
 		<Box h={'95vh'} w={'100vw'}>
 			<Center h={'100%'}>
@@ -23,7 +15,7 @@ const AppPage = () => {
 					</Stack>
 				</Paper>
 			</Center>
-			<ButtonOptions setAction={setAction} />
+			{/* <ButtonOptions setAction={setAction} /> */}
 		</Box>
 	);
 };

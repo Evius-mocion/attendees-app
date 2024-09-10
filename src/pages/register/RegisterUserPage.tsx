@@ -1,11 +1,11 @@
 import { Button, Stack, TextInput } from '@mantine/core';
 import { useState } from 'react';
-import { useCheckEmail } from '../../hooks/useCheckEmail';
-import { useRegisterUserStore } from '../../hooks/useRegisterUserStore';
 import { RegisterUserView } from '../../store/types/registerUser.type';
 import { RegisterFormByEvent } from '../RegisterFormByEvent';
-import { DynamicForm } from '../../components/dynamicForm/DynamicForm';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
+import { DynamicForm } from '../../modules/dynamicForm/components/DynamicForm.tsx';
+import { useRegisterUserStore } from '../../hooks/useRegisterUserStore.ts';
+import { useCheckEmail } from '../../hooks/useCheckEmail.ts';
 
 export const RegisterUserPage = () => {
 	const [email, setEmail] = useState('');
