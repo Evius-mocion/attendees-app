@@ -11,12 +11,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { ModalsProvider } from '@mantine/modals';
 import '@mantine/notifications/styles.css';
 import { Notifications } from '@mantine/notifications';
+import { FeedbackOfModal } from './components/feedbackOfModal/FeedbackOfModal';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Provider store={store}>
 			<MantineProvider theme={theme} defaultColorScheme='light' forceColorScheme='light'>
-				<ModalsProvider>
+				<ModalsProvider modals={{ feedbackOfModal: FeedbackOfModal }}>
 					<Notifications position='bottom-right' zIndex={1000} limit={10} />
 					<BrowserRouter>
 						<AppRoutes />

@@ -10,8 +10,9 @@ export const useCheckEmail = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [isCheckingEmail, setIsCheckingEmail] = useState(false);
 	const [emailStatus, setEmailStatus] = useState<GetAttendeeEmailStatusResponse>({} as GetAttendeeEmailStatusResponse);
+
 	const { event } = useAuthStationStore();
-	const { onSetRegisterView } = useRegisterUserStore();
+	const { onSetRegisterView, onSetUserData } = useRegisterUserStore();
 
 	const checkEmail = async (email: string) => {
 		try {
@@ -23,10 +24,22 @@ export const useCheckEmail = () => {
 			const { data } = await checkEmailService(email, event.id);
 			setEmailStatus(data);
 
-			if (data.isCollaborator) return setErrorMessage('El correo pertenece a un colaborador de la organización');
-			if (data.isRegisteredInEvent) return setErrorMessage('El correo ya se encuentra registrado en el evento');
-			if (data.haveAccount) return onSetRegisterView(RegisterUserView.attendeeData);
-
+			if (data.isCollaborator) {
+				setIsCheckingEmail(false);
+				setErrorMessage('El correo pertenece a un colaborador de la organización');
+				return;
+			}
+			if (data.isRegisteredInEvent) {
+				setIsCheckingEmail(false);
+				setErrorMessage('El correo ya se encuentra registrado en el evento');
+				return;
+			}
+			if (data.haveAccount) {
+				onSetUserData({ email, fullName: 'Nombre despreciable', gender: 'other' });
+				onSetRegisterView(RegisterUserView.attendeeData);
+				return;
+			}
+			onSetUserData({ email, fullName: 'Nombre despreciable', gender: 'other' });
 			onSetRegisterView(RegisterUserView.userData);
 			setIsCheckingEmail(false);
 		} catch (error) {

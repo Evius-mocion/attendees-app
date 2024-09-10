@@ -1,3 +1,5 @@
+import { UserBasicData } from '../../common/types/userEntity.type';
+
 export enum RegisterUserView {
 	initial = 'initial',
 	userData = 'userData',
@@ -5,4 +7,6 @@ export enum RegisterUserView {
 }
 export type RegisterUserSlice = {
 	currentView: RegisterUserView;
+	userData: UserBasicData;
+	isRegistering: boolean;
 };

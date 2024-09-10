@@ -1,0 +1,16 @@
+.success {
+	color: var(--mantine-color-green-6);
+}
+
+.warn {
+	color: var(--mantine-color-orange-6);
+	/* color: #FFAB09; */
+}
+
+.info, .confirm{
+	color: var(--mantine-color-blue-7);
+}
+
+.error, .delete {
+	color: var(--mantine-color-red-8);
+}

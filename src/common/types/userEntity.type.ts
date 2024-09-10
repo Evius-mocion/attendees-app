@@ -10,8 +10,7 @@ export type IUser = {
 	type_account: TypeAccount;
 };
 
-export type UserGenderType = 'male' | 'female';
-
-export type TypeAccount = 'client' | 'assistant';
+export type TypeAccount = 'client' | 'attendee';
+export type UserGenderType = 'male' | 'female' | 'other';
 
 export type UserBasicData = Pick<IUser, 'fullName' | 'email' | 'gender'>;

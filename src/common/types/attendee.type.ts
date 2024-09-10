@@ -1,7 +1,6 @@
 import { IUser } from './userEntity.type';
 
 export type AttendeeRegisterData = Pick<IUser, 'fullName' | 'email' | 'gender'> & {
-	id: string;
 	[key: string]: any;
 };
 
