@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { MyQRScanner } from '../../components/qrScanner/QRScanner';
 import { checkInUserWithEmailService } from '../../common/services/attendee.service';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
+import { showFeedbackOfModal } from '../../common/helpers/showEviusFeedback';
+import { TypeFeedback } from '../../common/types/eviusFeedback.type';
 
 export const CheckInWithQr = () => {
 	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
@@ -11,7 +13,17 @@ export const CheckInWithQr = () => {
 	const handleCheckInUser = async (email: string) => {
 		try {
 			const result = await checkInUserWithEmailService(email);
+			showFeedbackOfModal({
+				type: TypeFeedback.success,
+				title: 'Check In con éxito',
+				message: `El correo ${email} fue marcado como asistido correctamente`,
+			});
 		} catch (error) {
+			showFeedbackOfModal({
+				type: TypeFeedback.error,
+				title: 'Check In fallido',
+				message: `El correo ${email}No pudo ser marcado como asistido`,
+			});
 			setErrorMessage('');
 		}
 	};

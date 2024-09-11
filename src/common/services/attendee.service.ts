@@ -5,7 +5,9 @@ import {
 	PostAttendeeRegisterResponse,
 } from '../types/attendee.type';
 
-export const checkInUserWithEmailService = async (email: string) => {};
+export const checkInUserWithEmailService = async (email: string) => {
+	return true;
+};
 
 export const checkEmailService = async (email: string, eventId: string) => {
 	const data = await mocionApi.get<GetAttendeeEmailStatusResponse>(
