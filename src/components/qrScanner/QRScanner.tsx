@@ -9,7 +9,7 @@ export const MyQRScanner = (props: Props) => {
 	const { onScan } = props;
 	const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user');
 	return (
-		<Stack gap={0}>
+		<Stack gap={0} w={'100%'} h={'100%'}>
 			<Group justify='center'>
 				<Tooltip
 					withinPortal={false}

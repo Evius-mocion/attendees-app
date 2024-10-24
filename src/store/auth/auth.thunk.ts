@@ -6,12 +6,12 @@ import { onSetLogin, onSetLogout, onStartAuth } from './authSlice';
 import { saveItemInStorage } from '../../common/helpers/localStorage';
 import { LocalStorageNames } from '../../../../data-hub/src/common/types';
 
-export const startAuth = (stationId: string) => {
+export const startAuth = (qrToken: string) => {
 	return async (dispatch: AppDispatch) => {
 		try {
 			dispatch(onStartAuth());
 
-			const { station, access_token, event } = await loginStationService(stationId);
+			const { station, access_token, event } = await loginStationService(qrToken);
 
 			dispatch(
 				onSetLogin({
@@ -29,7 +29,9 @@ export const startAuth = (stationId: string) => {
 				return dispatch(onSetLogout('La estación no existe'));
 			}
 			if (response?.status === 401) {
-				return dispatch(onSetLogout('La estación no esta autorizada para funcionar'));
+				return dispatch(
+					onSetLogout('El token o código no es valido o ha espirado, póngase en contacto con el administrador')
+				);
 			}
 			dispatch(onSetLogout('Error desconocido'));
 		}

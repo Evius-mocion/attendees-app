@@ -1,17 +1,15 @@
-import { Button, Stack, Text } from '@mantine/core';
-import { useAuthViewStore } from '../../hooks/useAuthViewStore';
+import { Button, Paper, rem, Stack, Text, Title } from '@mantine/core';
 import { MyQRScanner } from '../qrScanner/QRScanner';
 import { useAppDispatch } from '../../store/store';
 import { startAuth } from '../../store/auth/auth.thunk';
-import { AuthView } from '../../store/auth/authViewSlice';
 import { useEffect, useState } from 'react';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
+import { useMyNavigation } from '../../hooks/useMyNavigation';
 
 export const QrCode = () => {
-	const { setAuthView } = useAuthViewStore();
 	const { errorMessage, onSetResetErrorMessage } = useAuthStationStore();
-
-	const [qrCodeResult, setRrCodeResult] = useState('');
+	const { goToInitialOptions } = useMyNavigation();
+	const [qrCodeResult, setQrCodeResult] = useState('');
 
 	const dispatch = useAppDispatch();
 
@@ -22,7 +20,7 @@ export const QrCode = () => {
 	useEffect(() => {
 		if (qrCodeResult.length > 0) {
 			startAuthorizationByQR(qrCodeResult);
-			setRrCodeResult('');
+			setQrCodeResult('');
 		}
 	}, [qrCodeResult]);
 
@@ -36,25 +34,32 @@ export const QrCode = () => {
 	};
 
 	return (
-		<Stack>
-			{qrCodeResult.length === 0 && errorMessage.length === 0 ? (
-				<MyQRScanner
-					onScan={(result) => {
-						if (result) {
-							setRrCodeResult(result);
-						}
+		<Paper p={'xl'} withBorder={false} shadow='0' mih={400} maw={600}>
+			<Stack gap={rem(70)} mih={400}>
+				<Title order={1} ta={'center'}>
+					¡Leer Qr de estación!
+				</Title>
+				<Stack gap={'xl'}>
+					{qrCodeResult.length === 0 && errorMessage.length === 0 ? (
+						<MyQRScanner
+							onScan={(result) => {
+								if (result) {
+									setQrCodeResult(result);
+								}
+							}}
+						/>
+					) : (
+						loginError()
+					)}
+				</Stack>
+				<Button
+					onClick={() => {
+						goToInitialOptions();
 					}}
-				/>
-			) : (
-				loginError()
-			)}
-			<Button
-				onClick={() => {
-					setAuthView(AuthView.initial);
-				}}
-			>
-				Atrás
-			</Button>
-		</Stack>
+				>
+					Cancelar
+				</Button>
+			</Stack>
+		</Paper>
 	);
 };

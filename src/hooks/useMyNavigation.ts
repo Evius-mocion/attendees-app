@@ -13,7 +13,21 @@ export const useMyNavigation = () => {
 		navigate('/options/registerUser');
 	};
 	const goToInitialOptions = () => {
-		navigate('/options');
+		navigate('/identifyStation');
 	};
-	return { goToCheckInWithQrCode, goToCheckInWithEmail, goToRegisterUser, goToInitialOptions };
+
+	const goToIdentifyStationFromQr = () => {
+		navigate('/identifyStation/qr');
+	};
+	const goToIdentifyStationFromCode = () => {
+		navigate('/identifyStation/code');
+	};
+	return {
+		goToCheckInWithQrCode,
+		goToCheckInWithEmail,
+		goToRegisterUser,
+		goToInitialOptions,
+		goToIdentifyStationFromQr,
+		goToIdentifyStationFromCode,
+	};
 };
