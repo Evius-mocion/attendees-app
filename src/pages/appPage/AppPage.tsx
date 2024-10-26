@@ -1,4 +1,4 @@
-import { AppShell, Container } from '@mantine/core';
+import { AppShell, Container, Stack } from '@mantine/core';
 import { ButtonOptions } from '../ButtonOptions';
 import PrivateRoutes from '../../routes/PrivateRoutes';
 import { FooterMenu } from '../../components/footerMenu/FooterMenu';
@@ -6,13 +6,13 @@ import { AppHeader } from '../../components/header/AppHeader';
 
 const AppPage = () => {
 	return (
-		<AppShell footer={{ height: '80' }} header={{ height: 100 }}>
-			<AppShell.Header withBorder={false}>
-				<AppHeader />
-			</AppShell.Header>
+		<AppShell footer={{ height: 60 }}>
 			<AppShell.Main>
 				<Container w={'100%'} p={'lg'} pos={'relative'}>
-					<PrivateRoutes />
+					<Stack gap={'xl'}>
+						<AppHeader />
+						<PrivateRoutes />
+					</Stack>
 				</Container>
 				{/* <ButtonOptions /> */}
 			</AppShell.Main>

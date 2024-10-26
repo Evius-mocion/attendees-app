@@ -1,4 +1,5 @@
 import { IEvent, Station } from '../../common/types/event.type';
+import { IUser } from '../../common/types/userEntity.type';
 
 export type AuthSlice = {
 	status: AuthStatus;
@@ -6,6 +7,7 @@ export type AuthSlice = {
 	stationType: StationType;
 	errorMessage: string;
 	event: IEvent;
+	user: IUser;
 };
 
 export enum AuthStatus {

@@ -12,13 +12,14 @@ export const startAuth = (qrToken: string) => {
 		try {
 			dispatch(onStartAuth());
 
-			const { station, access_token, event } = await loginStationService(qrToken);
+			const { station, access_token, event, user } = await loginStationService(qrToken);
 
 			dispatch(
 				onSetLogin({
 					station,
 					stationType: station.experienceId ? StationType.experience : StationType.event,
 					event,
+					user,
 				})
 			);
 			dispatch(setInputCode(''));

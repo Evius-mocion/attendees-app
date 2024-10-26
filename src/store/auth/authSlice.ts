@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthSlice, AuthStatus, StationType } from '../types/auth.types';
 import { IEvent, Station } from '../../common/types/event.type';
+import { IUser } from '../../common/types/userEntity.type';
 
 const initialState: AuthSlice = {
 	station: {} as Station,
 	event: {} as IEvent,
+	user: {} as IUser,
 	stationType: '' as StationType,
 	status: AuthStatus.checking,
 	errorMessage: '',
@@ -17,11 +19,15 @@ export const authSlice = createSlice({
 			state.status = AuthStatus.checking;
 			state.errorMessage = '';
 		},
-		onSetLogin: (state, { payload }: PayloadAction<{ station: Station; stationType: StationType; event: IEvent }>) => {
+		onSetLogin: (
+			state,
+			{ payload }: PayloadAction<{ station: Station; stationType: StationType; event: IEvent; user: IUser }>
+		) => {
 			state.station = payload.station;
 			state.stationType = payload.stationType;
 			state.status = AuthStatus.authenticated;
 			state.event = payload.event;
+			state.user = payload.user;
 			state.errorMessage = '';
 		},
 		onSetLogout: (state, { payload = '' }: PayloadAction<string | undefined>) => {
