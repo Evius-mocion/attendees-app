@@ -28,6 +28,9 @@ export const useMyNavigation = () => {
 	const goToIdentifyStationFromCode = () => {
 		navigate('/identifyStation/code');
 	};
+	const goToAttendees = () => {
+		navigate('/attendees');
+	};
 	return {
 		goToCheckInWithQrCode,
 		goToCheckInWithEmail,
@@ -37,5 +40,6 @@ export const useMyNavigation = () => {
 		goToIdentifyStationFromCode,
 		goToLoginOptions,
 		goToCheckInWithAccessCode,
+		goToAttendees,
 	};
 };

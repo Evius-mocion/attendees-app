@@ -1,6 +1,6 @@
-import { ActionIcon, Flex, Menu, rem } from '@mantine/core';
+import { ActionIcon, Flex, Menu, rem, Stack } from '@mantine/core';
 import {
-	IconCalendarEvent,
+	IconPointFilled,
 	IconUsers,
 	IconDotsCircleHorizontal,
 	IconLogout,
@@ -9,39 +9,42 @@ import {
 } from '@tabler/icons-react';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
+import { useLocation } from 'react-router-dom';
 
 export const FooterMenu = () => {
 	const { handledLogout } = useAuthStationStore();
-	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
+	const { goToRegisterUser, goToInitialOptions, goToAttendees } = useMyNavigation();
+	const location = useLocation();
+
 	return (
 		<Flex h={'100%'} align='center' justify='space-around'>
-			<ActionIcon variant='subtle' size='xl' radius='md' aria-label='Home'>
-				<IconUserScan />
+			<ActionIcon variant='subtle' size='xl' radius='md' aria-label='Home' onClick={goToInitialOptions}>
+				<Stack gap={0} align='center'>
+					<IconUserScan />
+					{location.pathname.includes('identifyAttendee') && <IconPointFilled size={12} />}
+				</Stack>
 			</ActionIcon>
 			<ActionIcon variant='subtle' size='xl' radius='md' aria-label='Home'>
-				<IconUsers />
+				<Stack gap={0} align='center' onClick={goToAttendees}>
+					<IconUsers />
+					{location.pathname.includes('attendees') && <IconPointFilled size={12} />}
+				</Stack>
 			</ActionIcon>
-
+			{/* 
 			<ActionIcon variant='subtle' size='xl' radius='md' aria-label='Home'>
 				<IconCalendarEvent />
-			</ActionIcon>
+			</ActionIcon> */}
 
 			<Menu>
 				<Menu.Target>
 					<ActionIcon variant='subtle' size='xl' radius='md' aria-label='Home'>
 						<IconDotsCircleHorizontal />
-						{/* <Avatar name={user.fullName} color='initials' src={user.avatar} /> */}
 					</ActionIcon>
 				</Menu.Target>
 
 				<Menu.Dropdown>
-					<Menu.Label>Evento</Menu.Label>
-					<Menu.Item
-						leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
-						onClick={goToInitialOptions}
-					>
-						Ingreso
-					</Menu.Item>
+					<Menu.Label>Acciones</Menu.Label>
+
 					<Menu.Item
 						leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
 						onClick={goToRegisterUser}

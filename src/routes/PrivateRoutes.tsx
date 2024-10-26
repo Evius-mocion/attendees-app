@@ -3,6 +3,7 @@ import { CheckInWithEmail } from '../pages/checkInWithEmail/CheckInWithEmail';
 import { InitialOptions } from '../pages/initialOptions/InitialOptions';
 import { CheckInWithQr } from '../pages/checkInWithQr/CheckInWithQr';
 import { RegisterUserPage } from '../pages/register/RegisterUserPage';
+import { Attendees } from '../components/attendees/Attendees';
 
 const PrivateRoutes = () => {
 	return (
@@ -11,6 +12,7 @@ const PrivateRoutes = () => {
 			<Route path='/options/checkInWithEmail' element={<CheckInWithEmail />} />
 			<Route path='/options/checkInWithQrCode' element={<CheckInWithQr />} />
 			<Route path='/options/registerUser' element={<RegisterUserPage />} />
+			<Route path='/attendees' element={<Attendees />} />
 			<Route path='/*' element={<Navigate to={'/identifyAttendee'} />} />
 		</Routes>
 	);
