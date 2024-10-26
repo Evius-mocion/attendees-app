@@ -2,7 +2,9 @@ import { useNavigate } from 'react-router-dom';
 
 export const useMyNavigation = () => {
 	const navigate = useNavigate();
-
+	const goToInitialOptions = () => {
+		navigate('/identifyAttendee');
+	};
 	const goToCheckInWithQrCode = () => {
 		navigate('/options/checkInWithQrCode');
 	};
@@ -12,7 +14,8 @@ export const useMyNavigation = () => {
 	const goToRegisterUser = () => {
 		navigate('/options/registerUser');
 	};
-	const goToInitialOptions = () => {
+
+	const goToLoginOptions = () => {
 		navigate('/identifyStation');
 	};
 
@@ -29,5 +32,6 @@ export const useMyNavigation = () => {
 		goToInitialOptions,
 		goToIdentifyStationFromQr,
 		goToIdentifyStationFromCode,
+		goToLoginOptions,
 	};
 };

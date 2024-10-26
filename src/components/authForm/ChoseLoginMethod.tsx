@@ -19,7 +19,7 @@ export const ChoseLoginMethod = () => {
 				<Stack gap={'xl'}>
 					<MethodItem
 						image={'/public/assets/login/Station_Code.svg'}
-						label='Código de acceso'
+						label='Token de acceso'
 						onClic={() => {
 							setMethodSelected('code');
 						}}

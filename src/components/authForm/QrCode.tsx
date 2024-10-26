@@ -8,7 +8,7 @@ import { useMyNavigation } from '../../hooks/useMyNavigation';
 
 export const QrCode = () => {
 	const { errorMessage, onSetResetErrorMessage } = useAuthStationStore();
-	const { goToInitialOptions } = useMyNavigation();
+	const { goToLoginOptions } = useMyNavigation();
 	const [qrCodeResult, setQrCodeResult] = useState('');
 
 	const dispatch = useAppDispatch();
@@ -54,7 +54,7 @@ export const QrCode = () => {
 				</Stack>
 				<Button
 					onClick={() => {
-						goToInitialOptions();
+						goToLoginOptions();
 					}}
 				>
 					Cancelar
