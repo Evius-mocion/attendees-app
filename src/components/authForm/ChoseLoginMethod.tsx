@@ -1,6 +1,7 @@
-import { AspectRatio, Button, Checkbox, Group, Image, Paper, rem, Stack, Text, Title } from '@mantine/core';
+import { Button, Paper, rem, Stack, Title } from '@mantine/core';
 import { useState } from 'react';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
+import { MethodCard } from '../cardMethod/MethodCard';
 
 export const ChoseLoginMethod = () => {
 	const [methodSelected, setMethodSelected] = useState<'code' | 'qr' | ''>('');
@@ -17,7 +18,7 @@ export const ChoseLoginMethod = () => {
 					¡Bienvenido al App de asistentes!
 				</Title>
 				<Stack gap={'xl'}>
-					<MethodItem
+					<MethodCard
 						image={'/public/assets/login/Station_Code.svg'}
 						label='Token de acceso'
 						onClic={() => {
@@ -25,7 +26,7 @@ export const ChoseLoginMethod = () => {
 						}}
 						isActive={methodSelected === 'code'}
 					/>
-					<MethodItem
+					<MethodCard
 						image='/public/assets/login/Station_QR.svg'
 						label='Leer código QR'
 						onClic={() => {
@@ -36,34 +37,6 @@ export const ChoseLoginMethod = () => {
 				</Stack>
 				<Button onClick={onNext}>Siguiente</Button>
 			</Stack>
-		</Paper>
-	);
-};
-
-const MethodItem = ({
-	isActive,
-	label,
-	onClic,
-	image,
-}: {
-	onClic: () => void;
-	isActive: boolean;
-	label: string;
-	image: string;
-}) => {
-	return (
-		<Paper miw={20} mih={20} style={{ cursor: 'pointer' }} onClick={onClic} shadow='0' withBorder>
-			<Group pos={'relative'}>
-				<Checkbox checked={isActive} pos={'absolute'} top={5} right={5} />
-				<AspectRatio ratio={1} w={{ base: 100, md: 120, xl: 150 }}>
-					<Stack justify='center'>
-						<Image src={image} />
-					</Stack>
-				</AspectRatio>
-				<Text fw={'500'} fz={'h3'}>
-					{label}
-				</Text>
-			</Group>
 		</Paper>
 	);
 };

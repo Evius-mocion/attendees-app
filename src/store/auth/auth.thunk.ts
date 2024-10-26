@@ -5,6 +5,7 @@ import { StationType } from '../types/auth.types';
 import { onSetLogin, onSetLogout, onStartAuth } from './authSlice';
 import { saveItemInStorage } from '../../common/helpers/localStorage';
 import { LocalStorageNames } from '../../../../data-hub/src/common/types';
+import { setInputCode } from './authViewSlice';
 
 export const startAuth = (qrToken: string) => {
 	return async (dispatch: AppDispatch) => {
@@ -20,6 +21,7 @@ export const startAuth = (qrToken: string) => {
 					event,
 				})
 			);
+			dispatch(setInputCode(''));
 
 			saveItemInStorage(LocalStorageNames.TOKEN, access_token);
 		} catch (error) {
