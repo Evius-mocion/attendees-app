@@ -11,6 +11,9 @@ export const useMyNavigation = () => {
 	const goToCheckInWithEmail = () => {
 		navigate('/options/checkInWithEmail');
 	};
+	const goToCheckInWithAccessCode = () => {
+		navigate('/options/checkInWithAccessCode');
+	};
 	const goToRegisterUser = () => {
 		navigate('/options/registerUser');
 	};
@@ -33,5 +36,6 @@ export const useMyNavigation = () => {
 		goToIdentifyStationFromQr,
 		goToIdentifyStationFromCode,
 		goToLoginOptions,
+		goToCheckInWithAccessCode,
 	};
 };

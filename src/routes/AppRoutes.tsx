@@ -10,7 +10,7 @@ const LazyAppPage = lazy(() => import('../pages/appPage/AppPage.tsx'));
 
 export const AppRoutes = () => {
 	useCheckAuthStation();
-	const { status } = useAuthStationStore();
+	const { status, event } = useAuthStationStore();
 
 	const RenderRoutes = useMemo(() => {
 		if (status === AuthStatus.notAuthenticated) {
@@ -21,11 +21,9 @@ export const AppRoutes = () => {
 				</>
 			);
 		} else {
-			return (
-				<>
-					<Route path='/*' element={<LazyAppPage />} />
-				</>
-			);
+			console.log('status', status);
+			console.log('event', event);
+			return <Route path='/*' element={<LazyAppPage />} />;
 		}
 	}, [status]);
 

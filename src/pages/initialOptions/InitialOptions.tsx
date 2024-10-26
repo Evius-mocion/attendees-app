@@ -1,15 +1,72 @@
-import { Group, Paper, Stack, Text, Title } from '@mantine/core';
-import classes from '../../common/styles/general.module.css';
-import { IconMail, IconQrcode } from '@tabler/icons-react';
-import { iconSizes } from '../../common/styles/styleConstant';
-import { useAuthStationStore } from '../../hooks/useAuthStationStore';
-import { StationType } from '../../store/types/auth.types';
+import { Button, Container, Group, Stack, Text } from '@mantine/core';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
+import { MethodCard } from '../../components/cardMethod/MethodCard';
+import { useState } from 'react';
+
+enum OptionSelected {
+	email = 'email',
+	code = 'code',
+	qr = 'qr',
+	notSelected = 'not-selected',
+}
 
 export const InitialOptions = () => {
 	const { goToCheckInWithEmail, goToCheckInWithQrCode } = useMyNavigation();
-	const { stationType } = useAuthStationStore();
+	const [optionSelected, setOptionSelected] = useState<OptionSelected>(OptionSelected.notSelected);
+
+	const onNext = () => {
+		switch (optionSelected) {
+			case 'code':
+				goToCheckInWithEmail();
+				break;
+			case 'qr':
+				goToCheckInWithQrCode();
+				break;
+			case 'email':
+				goToCheckInWithEmail();
+				break;
+		}
+	};
+
 	return (
+		<Container w={'100%'}>
+			<Stack gap={'xl'}>
+				<Stack>
+					<Text ta={'center'}>Identificación del usuario</Text>
+					<Stack>
+						<MethodCard
+							image={'/public/assets/login/email_input.svg'}
+							label='Correo electrónico'
+							isActive={optionSelected === OptionSelected.email}
+							onClic={() => {
+								setOptionSelected(OptionSelected.email);
+							}}
+						/>
+						<MethodCard
+							image={'/public/assets/login/Station_Code.svg'}
+							label='Código de acceso'
+							isActive={optionSelected === OptionSelected.code}
+							onClic={() => {
+								setOptionSelected(OptionSelected.code);
+							}}
+						/>
+						<MethodCard
+							image={'/public/assets/login/Station_QR.svg'}
+							label='Escanear QR'
+							isActive={optionSelected === OptionSelected.qr}
+							onClic={() => {
+								setOptionSelected(OptionSelected.qr);
+							}}
+						/>
+					</Stack>
+				</Stack>
+				<Group justify='end'>
+					<Button onClick={onNext}>Siguiente</Button>
+				</Group>
+			</Stack>
+		</Container>
+	);
+	/* return (
 		<Stack>
 			<Title order={1} ta={'center'}>
 				Ingreso en {stationType === StationType.event ? 'el evento' : 'la actividad'}
@@ -51,5 +108,5 @@ export const InitialOptions = () => {
 				</Paper>
 			</Group>
 		</Stack>
-	);
+	); */
 };
