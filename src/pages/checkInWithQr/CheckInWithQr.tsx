@@ -8,17 +8,19 @@ export const CheckInWithQr = () => {
 	const { handleCheckInUser, errorMessage, resetError } = useCheckUserService();
 
 	return (
-		<Stack w={'80%'}>
-			<Text fz={'lg'} fw={500}>
+		<Stack>
+			<Text fz={'lg'} fw={500} ta={'center'}>
 				Código QR
 			</Text>
-			<MyQRScanner
-				onScan={(qrCode) => {
-					if (qrCode) {
-						handleCheckInUser(qrCode);
-					}
-				}}
-			/>
+			<Group justify='center'>
+				<MyQRScanner
+					onScan={(qrCode) => {
+						if (qrCode) {
+							handleCheckInUser(qrCode);
+						}
+					}}
+				/>
+			</Group>
 			{errorMessage && (
 				<Text ta='center' c={'red'}>
 					No se encuentra registrado,{' '}

@@ -1,16 +1,19 @@
 import { QrReader } from 'react-qr-reader';
 import { useState } from 'react';
-import { ActionIcon, Group, Stack, Tooltip } from '@mantine/core';
-import { IconMoonStars, IconSun } from '@tabler/icons-react';
+import { Stack } from '@mantine/core';
+
 type Props = {
-	onScan: (resul: string | undefined) => void;
+	onScan: (result: string | undefined) => void;
+	width?: number;
+	height?: number;
 };
+
 export const MyQRScanner = (props: Props) => {
-	const { onScan } = props;
+	const { onScan, width = 500, height = 500 } = props;
 	const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user');
 	return (
-		<Stack gap={0} w={'100%'} h={'100%'}>
-			<Group justify='center'>
+		<Stack gap={0}>
+			{/* <Group justify='center'>
 				<Tooltip
 					withinPortal={false}
 					label={facingMode === 'user' ? 'Cambiar a frontal' : 'Cambiar a lateral'}
@@ -31,8 +34,9 @@ export const MyQRScanner = (props: Props) => {
 						{facingMode == 'user' ? <IconSun size={20} /> : <IconMoonStars size={20} />}
 					</ActionIcon>
 				</Tooltip>
-			</Group>
+			</Group> */}
 			<QrReader
+				videoContainerStyle={{ width, height /* backgroundColor:alpha('#8d1529',1) */ }}
 				scanDelay={1000}
 				constraints={{ facingMode }}
 				onResult={(result, error) => {

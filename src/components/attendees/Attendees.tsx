@@ -1,4 +1,4 @@
-import { Table } from "@mantine/core";
+import { Table } from '@mantine/core';
 
 export const Attendees = () => {
 	return (
@@ -11,16 +11,7 @@ export const Attendees = () => {
 						<Table.Th>Opciones</Table.Th>
 					</Table.Tr>
 				</Table.Thead>
-				<Table.Tbody>
-					{invitationsToCollaborate.map((element) => (
-						<UserInvitationToCollaborateItem
-							key={element.id}
-							invitationToCollaborate={element}
-							onAcceptInvitation={onAcceptInvitation}
-							onRejectInvitation={onRejectInvitation}
-						/>
-					))}
-				</Table.Tbody>
+				<Table.Tbody></Table.Tbody>
 			</Table>
 		</div>
 	);
