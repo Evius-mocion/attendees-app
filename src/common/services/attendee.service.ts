@@ -6,10 +6,7 @@ import {
 } from '../types/attendee.type';
 
 //------- Check In -----------------
-export const checkInUserWithEmailService = async (email: string) => {
-	return true;
-};
-export const checkInByUserCode = async () => {
+export const checkInUser = async (email: string) => {
 	return true;
 };
 

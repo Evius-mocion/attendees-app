@@ -1,32 +1,11 @@
 import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
-import { useState } from 'react';
 import { MyQRScanner } from '../../components/qrScanner/QRScanner';
-import { checkInUserWithEmailService } from '../../common/services/attendee.service';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
-import { showFeedbackOfModal } from '../../common/helpers/showEviusFeedback';
-import { TypeFeedback } from '../../common/types/eviusFeedback.type';
+import { useCheckUserService } from '../../hooks/useCheckUserService';
 
 export const CheckInWithQr = () => {
 	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
-	const [errorMessage, setErrorMessage] = useState('');
-
-	const handleCheckInUser = async (email: string) => {
-		try {
-			const result = await checkInUserWithEmailService(email);
-			showFeedbackOfModal({
-				type: TypeFeedback.success,
-				title: 'Check In con éxito',
-				message: `El correo ${email} fue marcado como asistido correctamente`,
-			});
-		} catch (error) {
-			showFeedbackOfModal({
-				type: TypeFeedback.error,
-				title: 'Check In fallido',
-				message: `El correo ${email} no pudo ser marcado como asistido`,
-			});
-			setErrorMessage('');
-		}
-	};
+	const { handleCheckInUser, errorMessage, resetError } = useCheckUserService();
 
 	return (
 		<Stack w={'80%'}>
