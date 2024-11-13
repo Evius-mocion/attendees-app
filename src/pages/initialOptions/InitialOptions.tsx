@@ -29,8 +29,8 @@ export const InitialOptions = () => {
 	};
 
 	return (
-		<Container w={'100%'}>
-			<Stack gap={'xl'}>
+		<Container w={'100%'} h={'100%'}>
+			<Stack gap={'xl'} h={'100%'} justify='center'>
 				<Stack>
 					<Text ta={'center'} fz={'lg'} fw={500}>
 						Identificación del usuario

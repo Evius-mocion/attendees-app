@@ -1,5 +1,4 @@
 import { AppShell, Container, Stack } from '@mantine/core';
-import { ButtonOptions } from '../ButtonOptions';
 import PrivateRoutes from '../../routes/PrivateRoutes';
 import { FooterMenu } from '../../components/footerMenu/FooterMenu';
 import { AppHeader } from '../../components/header/AppHeader';
