@@ -6,16 +6,16 @@ export const useMyNavigation = () => {
 		navigate('/identifyAttendee');
 	};
 	const goToCheckInWithQrCode = () => {
-		navigate('/options/checkInWithQrCode');
+		navigate('/identifyAttendee/checkInWithQrCode');
 	};
 	const goToCheckInWithEmail = () => {
-		navigate('/options/checkInWithEmail');
+		navigate('/identifyAttendee/byEmailOrUserCode');
 	};
 	const goToCheckInWithAccessCode = () => {
 		navigate('/options/checkInWithAccessCode');
 	};
 	const goToRegisterUser = () => {
-		navigate('/options/registerUser');
+		navigate('/registerUser');
 	};
 
 	const goToLoginOptions = () => {
@@ -31,6 +31,11 @@ export const useMyNavigation = () => {
 	const goToAttendees = () => {
 		navigate('/attendees');
 	};
+
+	const goToCheckInWithUserCode = () => {
+		navigate('/identifyAttendee/userCode');
+	};
+
 	return {
 		goToCheckInWithQrCode,
 		goToCheckInWithEmail,
@@ -41,5 +46,6 @@ export const useMyNavigation = () => {
 		goToLoginOptions,
 		goToCheckInWithAccessCode,
 		goToAttendees,
+		goToCheckInWithUserCode,
 	};
 };

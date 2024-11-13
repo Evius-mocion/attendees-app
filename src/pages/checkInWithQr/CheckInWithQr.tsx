@@ -22,7 +22,7 @@ export const CheckInWithQr = () => {
 			showFeedbackOfModal({
 				type: TypeFeedback.error,
 				title: 'Check In fallido',
-				message: `El correo ${email}No pudo ser marcado como asistido`,
+				message: `El correo ${email} no pudo ser marcado como asistido`,
 			});
 			setErrorMessage('');
 		}

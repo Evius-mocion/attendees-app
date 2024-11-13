@@ -1,60 +1,42 @@
-import { Anchor, Button, Group, Stack, Text, TextInput, Title } from '@mantine/core';
-import { isEmail, useForm } from '@mantine/form';
-import { IconAt } from '@tabler/icons-react';
+import { Button, Group, Stack, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
 
-type EmailForm = {
-	email: string;
+type EmailOrUserCodeForm = {
+	termOfSearch: string;
 };
 
 export const CheckInWithEmail = () => {
 	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
 
-	const emailForm = useForm<EmailForm>({
+	const valueForm = useForm<EmailOrUserCodeForm>({
 		initialValues: {
-			email: '',
-		},
-		validate: {
-			email: isEmail('El correo no es valido'),
+			termOfSearch: '',
 		},
 	});
 
 	return (
-		<Stack gap={'xl'} w={'80%'}>
+		<Stack gap={'xl'} justify='center' flex={1}>
 			<form
-				onSubmit={emailForm.onSubmit(({ email }) => {
-					console.log('email', email);
+				onSubmit={valueForm.onSubmit(({ termOfSearch }) => {
+					console.log('termOfSearch', termOfSearch);
 				})}
 			>
 				<Stack>
-					<Text fz={'lg'} fw={500}>
-						Check In con correo electrónico
-					</Text>
 					<TextInput
-						label='Correo electrónico'
-						placeholder='tucorreo@gmail.com'
-						leftSection={<IconAt />}
+						label='Correo electrónico o código '
+						placeholder='Ingrese el correo o el código'
 						size='lg'
 						withAsterisk
-						onChange={({ target: { value } }) => emailForm.setFieldValue('email', value)}
-						error={emailForm.errors.email}
-						/* error={
-							emailForm.errors.email && (
-								<Text ta='center'>
-									No se encuentra registrado,{' '}
-									<Anchor onClick={goToRegisterUser} underline='always'>
-										Haz clic aquí para registrarte
-									</Anchor>
-								</Text>
-							)
-						} */
+						onChange={({ target: { value } }) => valueForm.setFieldValue('termOfSearch', value)}
+						error={valueForm.errors.termOfSearch}
 					/>
-					<Group justify='end' w={'80%'}>
+					<Group justify='end'>
 						<Button size='lg' onClick={goToInitialOptions} variant='subtle'>
 							Volver
 						</Button>
 						<Button size='lg' type='submit'>
-							Ingresar
+							Continuar
 						</Button>
 					</Group>
 				</Stack>

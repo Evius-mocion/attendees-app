@@ -11,13 +11,13 @@ enum OptionSelected {
 }
 
 export const InitialOptions = () => {
-	const { goToCheckInWithEmail, goToCheckInWithQrCode } = useMyNavigation();
+	const { goToCheckInWithEmail, goToCheckInWithQrCode, goToCheckInWithUserCode } = useMyNavigation();
 	const [optionSelected, setOptionSelected] = useState<OptionSelected>(OptionSelected.notSelected);
 
 	const onNext = () => {
 		switch (optionSelected) {
 			case 'code':
-				goToCheckInWithEmail();
+				goToCheckInWithUserCode();
 				break;
 			case 'qr':
 				goToCheckInWithQrCode();
@@ -32,27 +32,29 @@ export const InitialOptions = () => {
 		<Container w={'100%'}>
 			<Stack gap={'xl'}>
 				<Stack>
-					<Text ta={'center'}>Identificación del usuario</Text>
+					<Text ta={'center'} fz={'lg'} fw={500}>
+						Identificación del usuario
+					</Text>
 					<Stack>
 						<MethodCard
 							image={'/public/assets/login/email_input.svg'}
-							label='Correo electrónico'
+							label='Correo o código de acceso'
 							isActive={optionSelected === OptionSelected.email}
 							onClic={() => {
 								setOptionSelected(OptionSelected.email);
 							}}
 						/>
-						<MethodCard
+						{/* <MethodCard
 							image={'/public/assets/login/Station_Code.svg'}
 							label='Código de acceso'
 							isActive={optionSelected === OptionSelected.code}
 							onClic={() => {
 								setOptionSelected(OptionSelected.code);
 							}}
-						/>
+						/> */}
 						<MethodCard
 							image={'/public/assets/login/Station_QR.svg'}
-							label='Escanear QR'
+							label='QR'
 							isActive={optionSelected === OptionSelected.qr}
 							onClic={() => {
 								setOptionSelected(OptionSelected.qr);
@@ -61,7 +63,9 @@ export const InitialOptions = () => {
 					</Stack>
 				</Stack>
 				<Group justify='end'>
-					<Button onClick={onNext}>Siguiente</Button>
+					<Button onClick={onNext} disabled={optionSelected === OptionSelected.notSelected}>
+						Siguiente
+					</Button>
 				</Group>
 			</Stack>
 		</Container>

@@ -8,8 +8,8 @@ const AppPage = () => {
 	return (
 		<AppShell footer={{ height: 60 }}>
 			<AppShell.Main>
-				<Container w={'100%'} p={'lg'} pos={'relative'}>
-					<Stack gap={'xl'}>
+				<Container w={'100%'} p={'lg'} pos={'relative'} h={'100vh'}>
+					<Stack gap={'xl'} h={'100%'}>
 						<AppHeader />
 						<PrivateRoutes />
 					</Stack>
