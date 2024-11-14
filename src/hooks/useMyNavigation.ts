@@ -36,6 +36,10 @@ export const useMyNavigation = () => {
 		navigate('/identifyAttendee/userCode');
 	};
 
+	const goToAttendeeActions = (attendeeId: string) => {
+		navigate(`/attendee/${attendeeId}`);
+	};
+
 	return {
 		goToCheckInWithQrCode,
 		goToCheckInWithEmail,
@@ -47,5 +51,6 @@ export const useMyNavigation = () => {
 		goToCheckInWithAccessCode,
 		goToAttendees,
 		goToCheckInWithUserCode,
+		goToAttendeeActions,
 	};
 };

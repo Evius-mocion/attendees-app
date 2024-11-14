@@ -1,11 +1,20 @@
 import { mocionApi } from '../../api/mocion.api';
 import {
+	Attendee,
 	AttendeeRegisterData,
 	GetAttendeeEmailStatusResponse,
 	PostAttendeeRegisterResponse,
 } from '../types/attendee.type';
 
 //------- Check In -----------------
+
+export const getAttendeeService = async (eventId: string, attendeeIdentify: string): Promise<Attendee> => {
+	return {
+		id: 'fe26fef8ef48e4f',
+		email: 'luisortiz@gmail.com',
+		fullName: 'Luis Ortiz',
+	};
+};
 export const checkInUser = async (email: string) => {
 	return true;
 };

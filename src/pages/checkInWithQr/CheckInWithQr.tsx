@@ -1,11 +1,11 @@
 import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
 import { MyQRScanner } from '../../components/qrScanner/QRScanner';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
-import { useCheckUserService } from '../../hooks/useCheckUserService';
+import { useCheckInUserService } from '../../hooks/useCheckInUserService';
 
 export const CheckInWithQr = () => {
 	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
-	const { handleCheckInUser, errorMessage, resetError } = useCheckUserService();
+	const { handleCheckInUser, errorMessage, resetError } = useCheckInUserService();
 
 	return (
 		<Stack>
@@ -31,7 +31,7 @@ export const CheckInWithQr = () => {
 			)}
 			<Group justify='end' w={'80%'}>
 				<Button size='lg' onClick={goToInitialOptions} variant='subtle'>
-					Volver
+					Atrás
 				</Button>
 			</Group>
 		</Stack>

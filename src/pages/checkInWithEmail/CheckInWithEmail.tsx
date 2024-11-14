@@ -1,6 +1,7 @@
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
+import { useCheckInUserService } from '../../hooks/useCheckInUserService';
 
 type EmailOrUserCodeForm = {
 	termOfSearch: string;
@@ -8,6 +9,7 @@ type EmailOrUserCodeForm = {
 
 export const CheckInWithEmail = () => {
 	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
+	const { errorMessage, identifyAttendee, resetError } = useCheckInUserService();
 
 	const valueForm = useForm<EmailOrUserCodeForm>({
 		initialValues: {
@@ -18,8 +20,8 @@ export const CheckInWithEmail = () => {
 	return (
 		<Stack gap={'xl'} justify='center' flex={1}>
 			<form
-				onSubmit={valueForm.onSubmit(({ termOfSearch }) => {
-					console.log('termOfSearch', termOfSearch);
+				onSubmit={valueForm.onSubmit(async ({ termOfSearch }) => {
+					await identifyAttendee(termOfSearch);
 				})}
 			>
 				<Stack>
@@ -33,7 +35,7 @@ export const CheckInWithEmail = () => {
 					/>
 					<Group justify='end'>
 						<Button size='lg' onClick={goToInitialOptions} variant='subtle'>
-							Volver
+							Atrás
 						</Button>
 						<Button size='lg' type='submit'>
 							Continuar
