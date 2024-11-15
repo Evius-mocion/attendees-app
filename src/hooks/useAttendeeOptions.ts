@@ -1,18 +1,29 @@
 import { useEffect, useState } from 'react';
 import { getAttendeeService } from '../common/services/attendee.service';
-import { useAuthStationStore } from './useAuthStationStore';
 import { Attendee } from '../common/types/attendee.type';
+import { showFeedbackOfModal } from '../common/helpers/showEviusFeedback';
+import { TypeFeedback } from '../common/types/eviusFeedback.type';
+import { useMyNavigation } from './useMyNavigation';
 
 export const useAttendeeOptions = (attendeeId: string) => {
-	const { event } = useAuthStationStore();
 	const [attendee, setAttendee] = useState<Attendee>();
 	const [isLoading, setIsLoading] = useState(true);
+	const { goToInitialOptions } = useMyNavigation();
 
 	const getAttendee = async () => {
 		try {
 			if (!attendeeId) return;
 			setIsLoading(true);
-			const attendee = await getAttendeeService(event.id, attendeeId);
+			const attendee = await getAttendeeService(attendeeId);
+			if (!attendee) {
+				showFeedbackOfModal({
+					type: TypeFeedback.error,
+					title: 'Error inesperado',
+					message: 'No pudimos encontrar los datos del asistente, contacte con un administrador de la plataforma.',
+				});
+				goToInitialOptions();
+				return;
+			}
 			setAttendee(attendee);
 			setIsLoading(false);
 		} catch (error) {

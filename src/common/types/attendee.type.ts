@@ -31,3 +31,15 @@ export type EventAttendeeData = {
 } & DynamicEventAttendeeData;
 
 export type DynamicEventAttendeeData = Record<string, any>;
+
+export type CheckIn = {
+	experienceID?: string;
+	stationID: string;
+	type: TypeCheckIn;
+};
+
+export enum TypeCheckIn {
+	station = 'station',
+	cms = 'cms',
+	landing = 'landing',
+}

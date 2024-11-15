@@ -13,7 +13,8 @@ export const AppRoutes = () => {
 	const { status } = useAuthStationStore();
 
 	const RenderRoutes = useMemo(() => {
-		if (status !== AuthStatus.notAuthenticated) {
+		console.log('status', status)
+		if (status == AuthStatus.notAuthenticated) {
 			return (
 				<>
 					<Route path='/identifyStation/*' element={<LazyAuthPage />} />

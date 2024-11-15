@@ -2,21 +2,44 @@ import { mocionApi } from '../../api/mocion.api';
 import {
 	Attendee,
 	AttendeeRegisterData,
+	CheckIn,
 	GetAttendeeEmailStatusResponse,
 	PostAttendeeRegisterResponse,
+	TypeCheckIn,
 } from '../types/attendee.type';
+
+export const getAttendeeService = async (attendeeId: string): Promise<Attendee | null> => {
+	const { data } = await mocionApi.get<{ attendee: Attendee | null }>(`api/attendee/find/${attendeeId}`);
+	return data.attendee;
+};
 
 //------- Check In -----------------
 
-export const getAttendeeService = async (eventId: string, attendeeIdentify: string): Promise<Attendee> => {
-	return {
-		id: 'fe26fef8ef48e4f',
-		email: 'luisortiz@gmail.com',
-		fullName: 'Luis Ortiz',
-	};
+export const getAttendeeServiceByIdentifier = async (
+	eventId: string,
+	attendeeIdentify: string
+): Promise<Attendee | null> => {
+	const { data } = await mocionApi.get<{ attendee: Attendee | null }>(
+		`api/attendee/find/eventId/${eventId}/identify/${attendeeIdentify}`
+	);
+	return data.attendee;
 };
-export const checkInUser = async (email: string) => {
-	return true;
+export const checkInUser = async ({
+	attendeeId,
+	stationId,
+	type,
+	experienceID,
+}: {
+	attendeeId: string;
+	stationId: string;
+	type: TypeCheckIn;
+	experienceID?: string;
+}) => {
+	const { data } = await mocionApi.patch<{ attendee: Attendee | null }>(`api/attendee/checkIn/${attendeeId}`, {
+		experienceID,
+		stationID: stationId,
+		type,
+	} as CheckIn);
 };
 
 //----------------Register -----------------
