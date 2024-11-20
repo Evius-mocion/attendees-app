@@ -6,6 +6,8 @@ export type AttendeeRegisterData = Pick<IUser, 'fullName' | 'email' | 'gender'> 
 
 export type Attendee = Pick<IUser, 'fullName' | 'email'> & {
 	id: string;
+	checkIn: CheckIn[];
+	user: IUser;
 	[key: string]: any;
 };
 
@@ -33,6 +35,7 @@ export type EventAttendeeData = {
 export type DynamicEventAttendeeData = Record<string, any>;
 
 export type CheckIn = {
+	date: string;
 	experienceID?: string;
 	stationID: string;
 	type: TypeCheckIn;

@@ -6,7 +6,7 @@ import { TypeFeedback } from '../common/types/eviusFeedback.type';
 import { useMyNavigation } from './useMyNavigation';
 
 export const useAttendeeOptions = (attendeeId: string) => {
-	const [attendee, setAttendee] = useState<Attendee>();
+	const [attendee, setAttendee] = useState<Attendee>({} as Attendee);
 	const [isLoading, setIsLoading] = useState(true);
 	const { goToInitialOptions } = useMyNavigation();
 

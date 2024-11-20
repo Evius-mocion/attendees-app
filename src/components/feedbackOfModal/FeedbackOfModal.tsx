@@ -30,7 +30,7 @@ export const FeedbackOfModal = ({ context, id, innerProps }: ContextModalProps<F
 	return (
 		<Stack h={'100%'} align='center' justify='center' gap='lg'>
 			{iconType()}
-			<Title order={1} ta={'center'}>
+			<Title order={2} ta={'center'}>
 				{title}
 			</Title>
 			<Text c={'dimmed'} ta={'center'} fz={'lg'}>

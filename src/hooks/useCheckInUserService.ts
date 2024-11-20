@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { showFeedbackOfModal } from '../common/helpers/showEviusFeedback';
 import { checkInUser, getAttendeeServiceByIdentifier } from '../common/services/attendee.service';
 import { TypeCheckIn } from '../common/types/attendee.type';
@@ -8,17 +9,20 @@ import { useMyNavigation } from './useMyNavigation';
 export const useCheckInUserService = () => {
 	const { event, station } = useAuthStationStore();
 	const { goToAttendeeActions } = useMyNavigation();
+	const [isSaving, setIsSaving] = useState(false);
 
 	const handleCheckInUser = async (attendeeId: string) => {
 		try {
+			setIsSaving(true);
 			const result = await checkInUser({ attendeeId: attendeeId, stationId: station.id, type: TypeCheckIn.station });
-			console.log('result', result);
 			showFeedbackOfModal({
 				type: TypeFeedback.success,
 				title: 'Se hizo correctamente',
 				message: `El ingreso del asistente fue marcado con éxito"`,
 			});
+			setIsSaving(false);
 		} catch (error) {
+			setIsSaving(false);
 			showFeedbackOfModal({
 				type: TypeFeedback.error,
 				title: 'Ups! Algo salio mal',
@@ -35,12 +39,12 @@ export const useCheckInUserService = () => {
 			} else {
 				showFeedbackOfModal({
 					type: TypeFeedback.info,
-					title: 'UPS! No pudimos hacer eso',
-					message: 'El usuario no se encuentra registrado en este evento',
+					title: 'Usuario no registrado',
+					message: 'El usuario no se encuentra registrado en este evento.',
 				});
 			}
 		} catch (error) {}
 	};
 
-	return { handleCheckInUser, identifyAttendee };
+	return { handleCheckInUser, identifyAttendee, isSaving };
 };

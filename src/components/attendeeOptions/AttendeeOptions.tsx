@@ -10,7 +10,7 @@ export const AttendeeOptions = () => {
 	const { attendee, isLoading } = useAttendeeOptions(attendeeId ?? '');
 	const { station } = useAuthStationStore();
 
-	const { handleCheckInUser } = useCheckInUserService();
+	const { handleCheckInUser, isSaving } = useCheckInUserService();
 
 	return (
 		<Stack justify='center' h={'100%'}>
@@ -29,14 +29,20 @@ export const AttendeeOptions = () => {
 										<Stack gap={0}>
 											<Text fw={500}>{attendee?.fullName}</Text>
 											<Text fw={500} c={'gray'}>
-												{attendee?.email}
+												{attendee?.user.email}
 											</Text>
 										</Stack>
 									</Group>
 									<Badge color='gray'>No ha ingresado</Badge>
 								</Group>
 								<Group>
-									<Button fullWidth>Marcar ingreso al evento</Button>
+									{!attendee.checkIn ? (
+										<Button fullWidth onClick={() => handleCheckInUser(attendee.id)} loading={isSaving}>
+											Marcar ingreso al evento
+										</Button>
+									) : (
+										<Text></Text>
+									)}
 								</Group>
 							</Stack>
 						</Paper>

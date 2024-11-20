@@ -1,4 +1,6 @@
-import { DynamicField } from "../../modules/dynamicForm/types/dynamicForm";
+import { DynamicField } from '../../modules/dynamicForm/types/dynamicForm';
+import { Attendee } from './attendee.type';
+import { CollaboratorRol } from './organization.type';
 
 export type MocionExperience = {
 	id: string;
@@ -80,4 +82,10 @@ export enum LandingSectionTitles {
 	Sponsors = 'Patrocinadores',
 }
 
-
+export interface IUserAccessToEventResponse {
+	event: IEvent;
+	isRegister: boolean;
+	rol: CollaboratorRol | null;
+	attendee: Attendee;
+	totalAttendee: number;
+}

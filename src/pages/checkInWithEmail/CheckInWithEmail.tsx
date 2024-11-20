@@ -18,7 +18,7 @@ export const CheckInWithEmail = () => {
 			termOfSearch: '',
 		},
 		validate: {
-			termOfSearch(value, values, path) {
+			termOfSearch(value) {
 				if (!value || value.length === 0) {
 					return 'Debe ingresar un termino de busqueda';
 				}
