@@ -4,6 +4,8 @@ import { useMyParams } from '../../hooks/useMyParams';
 import styles from './attendeeOptions.module.css';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
 import { useCheckInUserService } from '../../hooks/useCheckInUserService';
+import { formatDate } from '../../common/helpers/eviusDatesManager';
+import { DateFormats } from '../../common/types/formatDates';
 
 export const AttendeeOptions = () => {
 	const { attendeeId } = useMyParams();
@@ -33,10 +35,12 @@ export const AttendeeOptions = () => {
 											</Text>
 										</Stack>
 									</Group>
-									<Badge color='gray'>No ha ingresado</Badge>
+									<Badge color={attendee.checkInAt ? 'green':'gray'}>
+										{attendee.checkInAt ? formatDate(attendee.checkInAt, DateFormats.landing) : 'No ha ingresado'}
+									</Badge>
 								</Group>
 								<Group>
-									{!attendee.checkIn ? (
+									{!attendee.checkInAt ? (
 										<Button fullWidth onClick={() => handleCheckInUser(attendee.id)} loading={isSaving}>
 											Marcar ingreso al evento
 										</Button>

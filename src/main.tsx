@@ -12,6 +12,7 @@ import { ModalsProvider } from '@mantine/modals';
 import '@mantine/notifications/styles.css';
 import { Notifications } from '@mantine/notifications';
 import { FeedbackOfModal } from './components/feedbackOfModal/FeedbackOfModal';
+import './config/dayjs';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>

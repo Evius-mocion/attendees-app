@@ -1,11 +1,19 @@
-import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
+import { Button, Group, Stack, Text } from '@mantine/core';
 import { MyQRScanner } from '../../components/qrScanner/QRScanner';
 import { useMyNavigation } from '../../hooks/useMyNavigation';
 import { useCheckInUserService } from '../../hooks/useCheckInUserService';
+import { useEffect, useState } from 'react';
 
 export const CheckInWithQr = () => {
-	const { goToRegisterUser, goToInitialOptions } = useMyNavigation();
-	const { handleCheckInUser, errorMessage, resetError } = useCheckInUserService();
+	const { goToInitialOptions } = useMyNavigation();
+	const { identifyAttendee } = useCheckInUserService();
+	const [qrCode, setQrCode] = useState('');
+
+	useEffect(() => {
+		if (qrCode) {
+			identifyAttendee(qrCode);
+		}
+	}, [qrCode]);
 
 	return (
 		<Stack>
@@ -14,21 +22,14 @@ export const CheckInWithQr = () => {
 			</Text>
 			<Group justify='center'>
 				<MyQRScanner
-					onScan={(qrCode) => {
-						if (qrCode) {
-							handleCheckInUser(qrCode);
+					onScan={(qrCodeAux) => {
+						if (qrCodeAux && !qrCode) {
+							setQrCode(qrCodeAux);
 						}
 					}}
 				/>
 			</Group>
-			{errorMessage && (
-				<Text ta='center' c={'red'}>
-					No se encuentra registrado,{' '}
-					<Anchor onClick={goToRegisterUser} underline='always'>
-						Haz clic aquí para registrarte
-					</Anchor>
-				</Text>
-			)}
+
 			<Group justify='end' w={'80%'}>
 				<Button size='lg' onClick={goToInitialOptions} variant='subtle'>
 					Atrás

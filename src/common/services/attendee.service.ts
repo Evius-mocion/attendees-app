@@ -28,17 +28,17 @@ export const checkInUser = async ({
 	attendeeId,
 	stationId,
 	type,
-	experienceID,
+	date,
 }: {
 	attendeeId: string;
 	stationId: string;
 	type: TypeCheckIn;
-	experienceID?: string;
+	date: string;
 }) => {
 	const { data } = await mocionApi.patch<{ attendee: Attendee | null }>(`api/attendee/checkIn/${attendeeId}`, {
-		experienceID,
 		stationID: stationId,
 		type,
+		date,
 	} as CheckIn);
 };
 

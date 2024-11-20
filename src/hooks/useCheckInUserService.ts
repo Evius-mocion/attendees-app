@@ -5,6 +5,7 @@ import { TypeCheckIn } from '../common/types/attendee.type';
 import { TypeFeedback } from '../common/types/eviusFeedback.type';
 import { useAuthStationStore } from './useAuthStationStore';
 import { useMyNavigation } from './useMyNavigation';
+import { getNow, getStringInLocalTimeZone } from '../common/helpers/eviusDatesManager';
 
 export const useCheckInUserService = () => {
 	const { event, station } = useAuthStationStore();
@@ -14,7 +15,12 @@ export const useCheckInUserService = () => {
 	const handleCheckInUser = async (attendeeId: string) => {
 		try {
 			setIsSaving(true);
-			const result = await checkInUser({ attendeeId: attendeeId, stationId: station.id, type: TypeCheckIn.station });
+			const result = await checkInUser({
+				attendeeId: attendeeId,
+				stationId: station.id,
+				type: TypeCheckIn.station,
+				date: getStringInLocalTimeZone(getNow()),
+			});
 			showFeedbackOfModal({
 				type: TypeFeedback.success,
 				title: 'Se hizo correctamente',
@@ -43,7 +49,13 @@ export const useCheckInUserService = () => {
 					message: 'El usuario no se encuentra registrado en este evento.',
 				});
 			}
-		} catch (error) {}
+		} catch (error) {
+			showFeedbackOfModal({
+				type: TypeFeedback.error,
+				title: 'Ocurrió un error inesperado',
+				message: 'Si el error persiste, contacte a un administrador.',
+			});
+		}
 	};
 
 	return { handleCheckInUser, identifyAttendee, isSaving };

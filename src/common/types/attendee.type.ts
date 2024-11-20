@@ -1,3 +1,4 @@
+import { IEvent, Station } from './event.type';
 import { IUser } from './userEntity.type';
 
 export type AttendeeRegisterData = Pick<IUser, 'fullName' | 'email' | 'gender'> & {
@@ -6,7 +7,22 @@ export type AttendeeRegisterData = Pick<IUser, 'fullName' | 'email' | 'gender'> 
 
 export type Attendee = Pick<IUser, 'fullName' | 'email'> & {
 	id: string;
-	checkIn: CheckIn[];
+	fullName: string;
+
+	event: IEvent;
+	country?: string;
+	city?: string;
+	plataform?: string;
+	browser?: string;
+	checkInAt?: string;
+	station?: Station;
+	checkInActivity: Array<{
+		id: string;
+		name: string; // Asume que CheckInActivity tiene estas propiedades
+		timestamp: string;
+	}>;
+	// checkInType?: CheckInType;
+	createAt: string;
 	user: IUser;
 	[key: string]: any;
 };
