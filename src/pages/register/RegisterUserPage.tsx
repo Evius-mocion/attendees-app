@@ -11,7 +11,8 @@ import { useMyNavigation } from '../../hooks/useMyNavigation.ts';
 export const RegisterUserPage = () => {
 	const [email, setEmail] = useState('');
 	const { checkEmail, errorMessage, isCheckingEmail, setErrorMessage } = useCheckEmail();
-	const { currentView, handledClearRegisterPage, userData, onRegisterUserIntoEvent } = useRegisterUserStore();
+	const { currentView, handledClearRegisterPage, userData, onRegisterUserIntoEvent, isRegistering } =
+		useRegisterUserStore();
 	const { goToInitialOptions } = useMyNavigation();
 	const { event } = useAuthStationStore();
 
@@ -56,7 +57,11 @@ export const RegisterUserPage = () => {
 						onSubmit={(datos) => {
 							onRegisterUserIntoEvent({ ...userData, ...datos });
 						}}
-						footer={<Button type='submit'>Enviar</Button>}
+						footer={
+							<Button type='submit' loading={isRegistering}>
+								Enviar
+							</Button>
+						}
 					/>
 				);
 			default:

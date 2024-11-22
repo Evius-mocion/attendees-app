@@ -37,6 +37,7 @@ export interface GetAttendeeEmailStatusResponse {
 export interface PostAttendeeRegisterResponse {
 	access_token: string;
 	user: Pick<IUser, 'email' | 'fullName' | 'id' | 'gender' | 'type_account'>;
+	attendee: Attendee;
 }
 
 export type AttendeeEntity = Pick<IUser, 'fullName'> & EventAttendeeData;
