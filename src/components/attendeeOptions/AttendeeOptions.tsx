@@ -3,20 +3,16 @@ import { useAttendeeOptions } from '../../hooks/useAttendeeOptions';
 import { useMyParams } from '../../hooks/useMyParams';
 import styles from './attendeeOptions.module.css';
 import { useAuthStationStore } from '../../hooks/useAuthStationStore';
-import { useCheckInUserService } from '../../hooks/useCheckInUserService';
 import { formatDate } from '../../common/helpers/eviusDatesManager';
 import { DateFormats } from '../../common/types/formatDates';
 
 export const AttendeeOptions = () => {
 	const { attendeeId } = useMyParams();
-	const { attendee, isLoading, getAttendee } = useAttendeeOptions(attendeeId ?? '');
+	const { attendee, isLoading, handleCheckInUser, isMarking } = useAttendeeOptions(attendeeId ?? '');
 	const { station } = useAuthStationStore();
-
-	const { handleCheckInUser, isSaving } = useCheckInUserService();
 
 	const onCheckIn = async () => {
 		await handleCheckInUser(attendee.id);
-		getAttendee();
 	};
 	return (
 		<Stack justify='center' h={'100%'}>
@@ -45,7 +41,7 @@ export const AttendeeOptions = () => {
 								</Group>
 								<Group>
 									{!attendee.checkInAt ? (
-										<Button fullWidth onClick={onCheckIn} loading={isSaving}>
+										<Button fullWidth onClick={onCheckIn} loading={isMarking}>
 											Marcar ingreso al evento
 										</Button>
 									) : (

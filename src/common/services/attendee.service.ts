@@ -35,11 +35,12 @@ export const checkInUser = async ({
 	type: TypeCheckIn;
 	date: string;
 }) => {
-	const { data } = await mocionApi.patch<{ attendee: Attendee | null }>(`api/attendee/checkIn/${attendeeId}`, {
+	const { data } = await mocionApi.patch<{ attendee: Attendee }>(`api/attendee/checkIn/${attendeeId}`, {
 		stationID: stationId,
 		type,
 		date,
 	} as CheckIn);
+	return data;
 };
 
 //----------------Register -----------------
