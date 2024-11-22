@@ -35,5 +35,5 @@ export const useAttendeeOptions = (attendeeId: string) => {
 		getAttendee();
 	}, [attendeeId]);
 
-	return { attendee, isLoading };
+	return { attendee, isLoading, getAttendee };
 };

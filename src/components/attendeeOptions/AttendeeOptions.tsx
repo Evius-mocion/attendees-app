@@ -9,11 +9,15 @@ import { DateFormats } from '../../common/types/formatDates';
 
 export const AttendeeOptions = () => {
 	const { attendeeId } = useMyParams();
-	const { attendee, isLoading } = useAttendeeOptions(attendeeId ?? '');
+	const { attendee, isLoading, getAttendee } = useAttendeeOptions(attendeeId ?? '');
 	const { station } = useAuthStationStore();
 
 	const { handleCheckInUser, isSaving } = useCheckInUserService();
 
+	const onCheckIn = async () => {
+		await handleCheckInUser(attendee.id);
+		getAttendee();
+	};
 	return (
 		<Stack justify='center' h={'100%'}>
 			<Group justify='center'>
@@ -29,19 +33,19 @@ export const AttendeeOptions = () => {
 											<Avatar size={100} name={attendee?.fullName} color='initials' src={attendee?.avatar} />
 										</Stack>
 										<Stack gap={0}>
-											<Text fw={500}>{attendee?.fullName}</Text>
+											<Text fw={500}>{attendee?.user.fullName}</Text>
 											<Text fw={500} c={'gray'}>
 												{attendee?.user.email}
 											</Text>
 										</Stack>
 									</Group>
-									<Badge color={attendee.checkInAt ? 'green':'gray'}>
+									<Badge color={attendee.checkInAt ? 'green' : 'gray'}>
 										{attendee.checkInAt ? formatDate(attendee.checkInAt, DateFormats.landing) : 'No ha ingresado'}
 									</Badge>
 								</Group>
 								<Group>
 									{!attendee.checkInAt ? (
-										<Button fullWidth onClick={() => handleCheckInUser(attendee.id)} loading={isSaving}>
+										<Button fullWidth onClick={onCheckIn} loading={isSaving}>
 											Marcar ingreso al evento
 										</Button>
 									) : (

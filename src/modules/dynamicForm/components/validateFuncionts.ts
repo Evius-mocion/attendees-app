@@ -36,7 +36,9 @@ export const validateSelectField = (field: IDynamicFieldSelect, value: any): str
 
 export const validatePhoneField = (field: IDynamicFieldPhone, value: any): string | undefined => {
 	const phoneValueAll = (value ?? '') as string;
-	const phoneValue = phoneValueAll.split(' ')[1];
+	const LENGTH_PHONE_SIMPLE = 1;
+	const isPhoneSimple = phoneValueAll.split(' ').length === LENGTH_PHONE_SIMPLE;
+	const phoneValue = phoneValueAll.split(' ')[isPhoneSimple ? 0 : 1];
 	if (field.rules?.min?.active && phoneValue.length < field.rules.min.value)
 		return !!field.rules.min.message ? field.rules.min.message : `La longitud del número no es válida`;
 	if (field.rules?.max?.active && phoneValue.length > field.rules.max.value)

@@ -10,6 +10,6 @@ export type IUser = {
 	type_account: TypeAccount;
 };
 
-export type UserGenderType = 'male' | 'female';
+export type UserGenderType = 'male' | 'female' | 'other';
 
 export type TypeAccount = 'client' | 'assistant';

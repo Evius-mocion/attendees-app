@@ -20,7 +20,12 @@ export const registerUserSlice = createSlice({
 		setIsRegistering: (state, { payload }: PayloadAction<boolean>) => {
 			state.isRegistering = payload;
 		},
+		setClearRegisterPage: (state) => {
+			state.currentView = initialState.currentView;
+			state.isRegistering = initialState.isRegistering;
+			state.userData = initialState.userData;
+		},
 	},
 });
 
-export const { setRegisterUserView, setUserData, setIsRegistering } = registerUserSlice.actions;
+export const { setRegisterUserView, setUserData, setIsRegistering, setClearRegisterPage } = registerUserSlice.actions;

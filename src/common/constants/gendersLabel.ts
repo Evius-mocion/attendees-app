@@ -1,16 +1,16 @@
 import { UserGenderType } from '../types/userEntity.type';
 
-export const gendersLabel = [
+export const gendersLabel: { label: string; value: UserGenderType }[] = [
 	{
 		label: 'Hombre',
-		value: 'male' as UserGenderType,
+		value: 'male',
 	},
 	{
 		label: 'Mujer',
-		value: 'female' as UserGenderType,
+		value: 'female',
 	},
-	/* {
+	{
 		label: 'Otro',
 		value: 'other',
-	}, */
+	},
 ];

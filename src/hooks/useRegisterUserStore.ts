@@ -3,7 +3,12 @@ import { registerUserInEvent } from '../common/services/attendee.service';
 import { AttendeeRegisterData } from '../common/types/attendee.type';
 import { TypeFeedback } from '../common/types/eviusFeedback.type';
 import { IUser, UserBasicData } from '../common/types/userEntity.type';
-import { setIsRegistering, setRegisterUserView, setUserData } from '../store/registerUser/registerUserSlice';
+import {
+	setClearRegisterPage,
+	setIsRegistering,
+	setRegisterUserView,
+	setUserData,
+} from '../store/registerUser/registerUserSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { RegisterUserView } from '../store/types/registerUser.type';
 import { useAuthStationStore } from './useAuthStationStore';
@@ -45,6 +50,9 @@ export const useRegisterUserStore = () => {
 		}
 	};
 
+	const handledClearRegisterPage = () => {
+		dispatch(setClearRegisterPage());
+	};
 	return {
 		currentView,
 		onSetRegisterView,
@@ -53,5 +61,6 @@ export const useRegisterUserStore = () => {
 		isRegistering,
 		userData,
 		onRegisterUserIntoEvent,
+		handledClearRegisterPage,
 	};
 };
