@@ -43,6 +43,7 @@ export const useCheckEmail = () => {
 			onSetRegisterView(RegisterUserView.userData);
 			setIsCheckingEmail(false);
 		} catch (error) {
+			setErrorMessage('Ocurrió un error inesperado, inténtelo de nuevo o contacte a un administrador.');
 			setIsCheckingEmail(false);
 		}
 	};
