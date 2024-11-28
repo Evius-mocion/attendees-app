@@ -35,7 +35,7 @@ export const ChoseLoginMethod = () => {
 						isActive={methodSelected === 'qr'}
 					/>
 				</Stack>
-				<Button onClick={onNext}>Siguiente</Button>
+				<Button size='lg' onClick={onNext}>Siguiente</Button>
 			</Stack>
 		</Paper>
 	);
