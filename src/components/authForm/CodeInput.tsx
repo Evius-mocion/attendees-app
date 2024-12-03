@@ -18,13 +18,16 @@ export const CodeInput = () => {
 	return (
 		<Paper p={'xl'} withBorder={false} shadow='0'>
 			<Stack gap={'xl'} w={{ base: 500 }}>
-				<TextInput
-					value={inputCode}
-					size='lg'
-					label='Token de la estación'
-					placeholder='Ingrese el token de inicio'
-					onChange={({ target: { value } }) => onSetInputCode(value)}
-				/>
+				<Stack gap={5}>
+					<TextInput
+						value={inputCode}
+						size='lg'
+						label='Token de la estación'
+						placeholder='Ingrese el token de inicio'
+						onChange={({ target: { value } }) => onSetInputCode(value)}
+					/>
+					{errorMessage && <Text c={'red'} >{errorMessage}</Text>}
+				</Stack>
 				<Stack gap={0}>
 					<Group justify='end'>
 						<Button
@@ -32,6 +35,7 @@ export const CodeInput = () => {
 							onClick={() => {
 								goToLoginOptions();
 							}}
+							size='lg'
 						>
 							Atrás
 						</Button>
@@ -39,11 +43,11 @@ export const CodeInput = () => {
 							onClick={() => {
 								startAuthorizationByCode(inputCode);
 							}}
+							size='lg'
 						>
 							Enviar
 						</Button>
 					</Group>
-					{errorMessage && <Text c={'red'}>{errorMessage}</Text>}
 				</Stack>
 			</Stack>
 		</Paper>

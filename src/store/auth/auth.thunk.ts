@@ -33,7 +33,7 @@ export const startAuth = (qrToken: string) => {
 			}
 			if (response?.status === 401) {
 				return dispatch(
-					onSetLogout('El token o código no es valido o ha espirado, póngase en contacto con el administrador')
+					onSetLogout('El token o código no es válido o ha espirado, póngase en contacto con el administrador')
 				);
 			}
 			dispatch(onSetLogout('Error desconocido'));
